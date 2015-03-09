@@ -7,8 +7,8 @@
     <engines>
         <engine name="cordova" version=">=2.4.0" />
     </engines>
-    <repo></repo>
-    <issue></issue>
+    <repo>https://github.com/mnill/cordova-app-updater.git</repo>
+    <issue>https://github.com/mnill/cordova-app-updater/issues</issue>
     <license>MIT</license>
     <keywords>cordova,file,update,updater,ios,android</keywords>
     <name>App updater</name>

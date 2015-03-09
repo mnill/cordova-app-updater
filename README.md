@@ -1,6 +1,7 @@
 # cordova-app-updater
 =============================
 > Simple plugin for hot update cordova app.
+> Forked from https://github.com/shawn0326/cordova-files-update
 
 Tested on android and ios.
 
@@ -55,7 +56,7 @@ Write a config.json to describe files to download and version. Put it in $SERVER
  
 --------------------------------------------------------------------------------  
 ## Demo:
-Just user http://mnillstone.com/ for $SERVER_URL; On first launch app will download all files from my site, and only config.json at all other launches.  
+Just use http://mnillstone.com/ for $SERVER_URL; On first launch app will download all files from my site, and only config.json at all other launches.
 
  --------------------------------------------------------------------------------  
 ## Tips  
