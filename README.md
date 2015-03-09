@@ -1,6 +1,6 @@
 # cordova-app-updater
 =============================
-> Simple plugin for hot update cordova app.
+> Simple plugin for hot update cordova app.  
 > Forked from https://github.com/shawn0326/cordova-files-update
 
 Tested on android and ios.
