@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.likesmagia.cordova.updater"
+        version="0.0.1">
+
+    <engines>
+        <engine name="cordova" version=">=2.4.0" />
+    </engines>
+    <repo></repo>
+    <issue></issue>
+    <license>MIT</license>
+    <keywords>cordova,file,update,updater,ios,android</keywords>
+    <name>App updater</name>
+    <description>Simple plugin for hot app update.</description>
+    <author email="mnillcoway@gmail.com" href="http://www.mnillstone.com">
+        Ilya Kirichek
+    </author>
+    <asset src="www/updater.js" target="updater.js" />
+    <asset src="www/updater.html" target="updater.html" />
+    <asset src="www/config.json" target="config.json" />
+
+    <preference name="SERVER_ADDRESS" />
+    <hook type="after_plugin_install" src="injectSettingsHook.js" />
+
+
+</plugin>

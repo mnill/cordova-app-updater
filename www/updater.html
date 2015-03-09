@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+</head>
+<body>
+<script type="text/javascript">
+    var Updater;
+    document.addEventListener('deviceready', function() {load();}, false);
+    function load() {
+
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+
+        function fail(error) {
+            alert('Something is wrong. Please reinstall app.');
+        }
+
+        function gotFS (fileSystem) {
+            Updater = new H5AppFS(fileSystem, {}, '$SERVER_URL');
+        }
+    }
+</script>
+<script type="text/javascript" src="updater.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+</body>
+</html>
