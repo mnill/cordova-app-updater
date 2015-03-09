@@ -35,7 +35,7 @@ You must use my fork of cordova-plugin-file (https://github.com/mnill/cordova-pl
 It's because official plugin does not support readonly access to file:///android_asset/ on android. Open pull-request: https://github.com/apache/cordova-plugin-file/pull/84
 
 ** Set start page **  
-Add <content src="updater.html"/> to your main config.xml, or design your own start updater page, like www/updater.html. I'm just use splashscreen plugin.
+Add ```<content src="updater.html"/>``` to your main config.xml, or design your own start updater page, like www/updater.html. I'm just use splashscreen plugin.
   
 ### Setup config.json
 Write a config.json to describe files to download and version. Put it in $SERVER_URL/config.json; (example http://mnillstone.com/config.json);
