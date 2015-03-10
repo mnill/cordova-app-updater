@@ -20,7 +20,7 @@ Current version required establish internet connection on app startup;
   
  --------------------------------------------------------------------------------  
 ## Installation:
-  ### Setup Cordova:
+### Setup Cordova:
 
 ```bash
   cordova plugin add https://github.com/mnill/cordova-plugin-file.git
@@ -34,7 +34,7 @@ Replace $SERVER_URL with your server url, where your config.json and files for u
 You must use my fork of cordova-plugin-file (https://github.com/mnill/cordova-plugin-file.git). Make sure your delete official plugin file before installation(if it's been installed before).   
 It's because official plugin does not support readonly access to file:///android_asset/ on android. Open pull-request: https://github.com/apache/cordova-plugin-file/pull/84
 
-** Set start page **  
+**Set start page**
 Add ```<content src="updater.html"/>``` to your main config.xml, or design your own start updater page, like www/updater.html. I'm just use splashscreen plugin.
   
 ### Setup config.json
