@@ -284,7 +284,7 @@ _H5AppUpdater.prototype._updateloop = function(){
 
 _H5AppUpdater.prototype._write = function(file_path) {
 
-    var online_path = this._updateUrl + file_path;// Интернет Адрес
+    var online_path = this._updateUrl + file_path  + '?nochache=' + Date.now();// Интернет Адрес
     var offline_path = "/cache/www/" + file_path;// Локальный путь
     //alert(offline_path);
     //alert(online_path);
