@@ -192,7 +192,7 @@ H5AppFS.prototype.getCacheName = function() {
 };
 
 /*
- * Для копирования файлов
+ * Files copier. Copy local files to cache.
  */
 var _H5AppCopyer = function(fs, callback){
     this._init(fs, callback)
@@ -211,7 +211,7 @@ _H5AppCopyer.prototype._init = function(fs, callback){
     })
 };
 
-// Если нет, то папка кэша первого поколения
+// Try create cache folder
 _H5AppCopyer.prototype._tryCreateCacheFile = function(callback){
     //alert('try create');
     var _self = this;
@@ -256,7 +256,7 @@ _H5AppCopyer.prototype._end = function() {
 
 
 /*
- * Используется для обновления файла
+ * Files updater. Copy new files from internet source to cache
  */
 var _H5AppUpdater = function(fs, callback){
     this._init(fs, callback)
@@ -284,8 +284,8 @@ _H5AppUpdater.prototype._updateloop = function(){
 
 _H5AppUpdater.prototype._write = function(file_path) {
 
-    var online_path = this._updateUrl + file_path  + '?nochache=' + Date.now();// Интернет Адрес
-    var offline_path = "/cache/www/" + file_path;// Локальный путь
+    var online_path = this._updateUrl + file_path  + '?nochache=' + Date.now();// interner path
+    var offline_path = "/cache/www/" + file_path;//Local path
     //alert(offline_path);
     //alert(online_path);
     var _self = this;
@@ -308,7 +308,7 @@ _H5AppUpdater.prototype._write = function(file_path) {
     };
 
     _self._fs.getSystem().root.getFile(offline_path, {create:false}, function(file) {
-        file.remove(function() { //Удаляем фаил если он есть
+        file.remove(function() { //remove file if exist
                 c();
             },
             function(err){
@@ -323,7 +323,7 @@ _H5AppUpdater.prototype._realWrite = function(online_path, local_path, callback)
     //alert('real write ' + local_path);
     var _self = this;
     var filetransfer = new FileTransfer();
-    filetransfer.download(online_path, local_path, function(c) { //Скачать файл
+    filetransfer.download(online_path, local_path, function(c) { //Download file
         callback && callback();
     }, function(err){
         //alert('real write error ' + err.code);
