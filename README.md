@@ -50,7 +50,7 @@ Write a config.json to describe files to download and version. Put it in $SERVER
   "files": [  // these list of new or differents files to download
     "index.html", //example. all files will be download from $SERVER_URL + this path.
     "image/fon.png" //example
-  ],
+  ]
 }
 ```
  
