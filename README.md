@@ -8,7 +8,9 @@ Tested on android and ios.
 
 Concept:
 1) on startup copy all files from www to PERSISTENT storage. (if not copied before);
+
 2) download config.json from server.
+
 3) compare the version constants in downloaded config.json and local config.json.
 4) if different - download new files from server to PERSISTENT, then override local config.json.
 (download not all files, only new\different which are written in config.json as new. I have a Grunt script that calculates a list of new files.)
