@@ -24,12 +24,16 @@ Current version requires internet connection on app startup;
 ### Setup Cordova:
 
 ```bash
-  cordova plugin add org.apache.cordova.file
+  cordova plugin add https://github.com/mnill/cordova-plugin-file.git
   cordova plugin add org.apache.cordova.file-transfer
   cordova plugin add org.apache.cordova.dialogs
   cordova plugin add https://github.com/mnill/cordova-app-updater.git --variable SERVER_ADDRESS="$SERVER_URL"
 ```
 Replace $SERVER_URL with your server url, where your config.json and files for update. (example http://mnillstone.com/) --- **Make sure to include the trailing slash in your url**
+
+**Attention**
+You must use my fork of cordova-plugin-file (https://github.com/mnill/cordova-plugin-file.git). Make sure you delete the official plugin file before installing (if it's been installed before).
+It's because the official plugin does not support readonly access to file:///android_asset/ on android. See open pull-request: https://github.com/apache/cordova-plugin-file/pull/84
 
 **Set start page**
 Add ```<content src="updater.html"/>``` to your main config.xml, or design your own start updater page, like www/updater.html. I just use a splashscreen plugin.
