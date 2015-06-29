@@ -7,6 +7,11 @@
     <engines>
         <engine name="cordova" version=">=2.4.0" />
     </engines>
+
+    <dependency id="cordova-plugin-file" version=">=2.0.0" />
+    <dependency id="cordova-plugin-file-transfer" version=">=1.0.0" />
+    <dependency id="cordova-plugin-dialogs" version=">=1.0.0" />
+
     <repo>https://github.com/mnill/cordova-app-updater.git</repo>
     <issue>https://github.com/mnill/cordova-app-updater/issues</issue>
     <license>MIT</license>
@@ -22,6 +27,5 @@
 
     <preference name="SERVER_ADDRESS" />
     <hook type="after_plugin_install" src="injectSettingsHook.js" />
-
 
 </plugin>

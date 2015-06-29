@@ -228,23 +228,18 @@ _H5AppCopyer.prototype._tryCreateCacheFile = function(callback){
 _H5AppCopyer.prototype._copy = function(entry, callback){
     var _self = this;
     //alert('Try copy');
-    window.resolveLocalFileSystemURI(cordova.file.applicationDirectory, function(applicationEntry){
-        applicationEntry.getDirectory('www', {create:false}, function(wwwEntry){
-            var oldName = 'www';
-            wwwEntry.copyTo(entry, oldName, function() {
-                _self._end();
-            }, function(err) {
-                //alert('copy file fail! err:' + err.code);
-                callback(err);
-            });
+    window.resolveLocalFileSystemURI(cordova.file.applicationDirectory + '/www', function(wwwEntry) {
+        var oldName = 'www';
+        wwwEntry.copyTo(entry, oldName, function() {
+            _self._end();
         }, function(err) {
-            //alert('fail get application www Directory' + err.code);
+            //alert('copy file fail! err:' + err.code);
             callback(err);
         });
-    }, function(err){
-        //alert('fail get applicationDirectory' + err.code);
+    }, function(err) {
+        //alert('fail get application www Directory' + err.code);
         callback(err);
-    })
+    });
 };
 
 _H5AppCopyer.prototype._end = function() {
