@@ -19,7 +19,6 @@ H5AppFS.prototype._init = function(system) {
     this._system = system;
     this._path.root = system.root.fullPath;
     this._path.cache = system.root.fullPath + this._cacheName;
-    var _self = this;
     this.loadConfig();
 };
 
@@ -36,11 +35,11 @@ H5AppFS.prototype.loadConfig = function() {
                     _self.startUpdate();
                 }
                 catch (e) {
-                    navigator.notification.alert('', _self.loadConfig.bind(_self), 'Something is wrong', 'Retry');
+                    navigator.notification.alert('',  function(){_self.loadConfig()}, 'Something is wrong', 'Retry');
                 }
             }
             else {
-                navigator.notification.alert('', _self.loadConfig.bind(_self), 'No Network Connection', 'Retry');
+                navigator.notification.alert('', function(){_self.loadConfig()}, 'No Network Connection', 'Retry');
             }
         }
     };
@@ -48,29 +47,30 @@ H5AppFS.prototype.loadConfig = function() {
 };
 
 H5AppFS.prototype.startUpdate = function(callback){
-    //alert('start update');
+    var _self = this;
     this.check(function(err, link){
         if (!err){
-            window.location.href = this._system.root.toURL() + 'cache/www/' + this._config.start;
+            window.location.href = _self._system.root.toURL() + 'cache/www/' + _self._config.start;
         } else
-            this.cleanCache(function(err){
+            _self.cleanCache(function(err){
                 if (err){
-                    navigator.notification.alert('', this.startUpdate.bind(this), 'Something is wrong', 'Retry');
+                    navigator.notification.alert('', function(){_self.startUpdate()}, 'Something is wrong', 'Retry');
                 } else {
-                    navigator.notification.alert('', this.startUpdate.bind(this), 'No Network Connection', 'Retry');
+                    navigator.notification.alert('', function(){_self.startUpdate()}, 'No Network Connection', 'Retry');
                 }
-            }.bind(this));
-    }.bind(this));
+            });
+    });
 };
 
 H5AppFS.prototype.getConfig = function(){
     return this._config;
 };
 
-H5AppFS.prototype.check = function(callback){
+H5AppFS.prototype.check = function(callback) {
+    var _self = this;
     //alert('checkVersion');
-    this.checkCache(function(entry) {
-            this.checkVersion(entry,
+    _self.checkCache(function(entry) {
+            _self.checkVersion(entry,
                 function(err, isUpToDate){
                     if ((err)&&(err!=null)){
                         //alert(err.code);
@@ -79,65 +79,67 @@ H5AppFS.prototype.check = function(callback){
                         if (isUpToDate){
                             callback();
                         } else {
-                            this.clearAndUpdate(function(err){
+                            _self.clearAndUpdate(function(err){
                                 callback(err);
-                            }.bind(this));
+                            });
                         }
                     }
-                }.bind(this)
-            )}.bind(this),
+                }
+            )},
         function() {
-            this.copyFilesToCache(function(err){
+            _self.copyFilesToCache(function(err){
                 if ((err)&&(err!= null)){
                     callback(err)
                 } else{
                     //alert('first copy succes');
-                    this.check(callback);
+                    _self.check(callback);
                 }
-            }.bind(this));
-        }.bind(this));
+            });
+        });
 
 };
 
 H5AppFS.prototype.clearAndUpdate = function(callback){
-    this.cleanCache(function(err){
+    var _self = this;
+    _self.cleanCache(function(err){
         if (err){
             callback(err);
         } else {
-            this.copyFilesToCache(function(err){
+            _self.copyFilesToCache(function(err){
                 if ((err)&&(err!=null))
                     callback(err)
                 else
-                    this.update(callback);
-            }.bind(this));
+                    _self.update(callback);
+            });
         }
-    }.bind(this));
+    });
 };
 
 H5AppFS.prototype.checkVersion = function(cacheEntry, callback){
-    this.checkCache(function(entry){
+    var _self = this;
+    _self.checkCache(function(entry){
             //alert('check cached config');
             entry.getFile('www/config.json', {create:false}, function(fileEntry){
                     fileEntry.file(function(file){
                             var reader = new FileReader();
                             reader.onloadend = function(evt) {
                                 try {
-                                    callback(null, JSON.parse(evt.target.result).version === this._config.version);
+                                    callback(null, JSON.parse(evt.target.result).version === _self._config.version);
                                 } catch(er){
                                     //alert(er);
                                     callback({error:'json parseFail', code:111})
                                 }
-                            }.bind(this);
+                            };
                             reader.readAsText(file);
-                        }.bind(this),
+                        },
                         function(err){
                             callback(err);
                         })
-                }.bind(this),
+                },
                 function(err){
                     callback(err);
                 })
-        }.bind(this),
+        },
         function(err){
             callback(err);
         });
@@ -244,8 +246,7 @@ _H5AppCopyer.prototype._copy = function(entry, callback){
 
 _H5AppCopyer.prototype._end = function() {
     //alert('_end');
-    var _self = this;
-    _self._callback && _self._callback();
+    this._callback && this._callback();
 };
 
 
@@ -328,23 +329,24 @@ _H5AppUpdater.prototype._realWrite = function(online_path, local_path, callback)
 
 _H5AppUpdater.prototype._end = function(err) {
     //alert('end');
+    var _self = this;
     if (!err) {
-        this._fs.getSystem().root.getFile(this._fs.getCacheName()+ '/www/config.json', {create: false}, function(fileEntry) {
+        _self._fs.getSystem().root.getFile(_self._fs.getCacheName()+ '/www/config.json', {create: false}, function(fileEntry) {
             fileEntry.createWriter(function (writer) {
                 writer.onwriteend = function(evt) {
                     //alert(evt);
-                    this._callback && this._callback();
-                }.bind(this);
-                writer.write(JSON.stringify(this._fs.getConfig()));
-            }.bind(this), function(err){
-                this._callback && this._callback(err);
-            }.bind(this));
+                    _self._callback && _self._callback();
+                };
+                writer.write(JSON.stringify(_self._fs.getConfig()));
+            }, function(err){
+                _self._callback && _self._callback(err);
+            });
 
-        }.bind(this), function(err) {
+        }, function(err) {
             //alert('error open config file');
-            this._callback && this._callback(err);
-        }.bind(this));
+            _self._callback && _self._callback(err);
+        });
     } else {
-        this._callback && this._callback(err);
+        _self._callback && _self._callback(err);
     }
 };
