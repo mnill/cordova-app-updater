@@ -330,7 +330,7 @@ _H5AppUpdater.prototype._realWrite = function(online_path, local_path, callback)
 _H5AppUpdater.prototype._end = function(err) {
     //alert('end');
     var _self = this;
-    if (!err && !(('debug' in fs.getConfig()) && fs.getConfig().debug)) {
+    if (!err && !(('debug' in _self._fs.getConfig()) && _self._fs.getConfig().debug)) {
         _self._fs.getSystem().root.getFile(_self._fs.getCacheName()+ '/www/config.json', {create: false}, function(fileEntry) {
             fileEntry.createWriter(function (writer) {
                 writer.onwriteend = function(evt) {
