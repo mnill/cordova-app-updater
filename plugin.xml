@@ -26,6 +26,6 @@
     <asset src="www/config.json" target="config.json" />
 
     <preference name="SERVER_ADDRESS" />
-    <hook type="after_plugin_install" src="injectSettingsHook.js" />
+    <hook type="after_prepare" src="injectSettingsHook.js" />
 
 </plugin>
