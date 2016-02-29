@@ -24,8 +24,4 @@
     <asset src="www/updater.js" target="updater.js" />
     <asset src="www/updater.html" target="updater.html" />
     <asset src="www/config.json" target="config.json" />
-
-    <preference name="SERVER_ADDRESS" />
-    <hook type="after_prepare" src="injectSettingsHook.js" />
-
 </plugin>
