@@ -11,6 +11,7 @@
     <dependency id="cordova-plugin-file" version=">=2.0.0" />
     <dependency id="cordova-plugin-file-transfer" version=">=1.0.0" />
     <dependency id="cordova-plugin-dialogs" version=">=1.0.0" />
+    <dependency id="cordova-plugin-appsettings" version=">=1.0.0" />
 
     <repo>https://github.com/mnill/cordova-app-updater.git</repo>
     <issue>https://github.com/mnill/cordova-app-updater/issues</issue>
@@ -21,7 +22,10 @@
     <author email="mnillcoway@gmail.com" href="http://www.mnillstone.com">
         Ilya Kirichek
     </author>
-    <asset src="www/updater.js" target="updater.js" />
     <asset src="www/updater.html" target="updater.html" />
     <asset src="www/config.json" target="config.json" />
+
+    <js-module src="www/updater.js" name="AppUpdater">
+        <clobbers target="AppUpdater"/>
+    </js-module>
 </plugin>

@@ -1,0 +1,35 @@
+{
+  "name": "cordova-app-updater",
+  "version": "0.2.0",
+  "description": "Simple plugin for hot update cordova app.",
+  "cordova": {
+    "id": "cordova-app-updater",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mnill/cordova-app-updater"
+  },
+  "keywords": [
+    "cordova",
+    "file",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "update",
+    "hot"
+  ],
+  "scripts": {
+    "test": "make test"
+  },
+  "author": "Ilya Kirichek",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "node-static": "^0.7.7",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
