@@ -1,6 +1,6 @@
 # cordova-app-updater
 =============================
-With new version (0.9.0) there are many braking changes.
+With new version (0.9.0) there are many breaking changes.
 =============================
 
 > Simple plugin for hot update cordova app.  
