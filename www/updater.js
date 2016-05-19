@@ -78,7 +78,7 @@ function getAppSettings(callback) {
             if (debug)
                 console.log('fail to get config.xml settings', error);
             callback('Something is wrong, can\'t get app settings. Please reinstall the app.');
-        }, ["UpdaterUrl", "UpdaterPolicy", "UpdaterHideSplashScreen", "UpdaterRedirect"]);
+        }, ["updaterurl", "updaterpolicy", "updaterhidesplashscreen", "updaterredirect"]);
 }
 
 var H5AppFS = function (system, props) {
