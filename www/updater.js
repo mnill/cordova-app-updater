@@ -70,7 +70,7 @@ function getAppSettings(callback) {
                 if (!('updaterredirect' in value))
                     value.updaterredirect = 'index.html';
 
-                value.updaterhidesplashscreen = !('updaterhidesplashscreen' in value) || value.updaterhidesplashscreen != 'true';
+                value.updaterhidesplashscreen = value.updaterhidesplashscreen == 'true';
                 callback(false, value);
             }
         },
