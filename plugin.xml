@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.likesmagia.cordova.updater"
-        version="0.1.0">
+        version="0.9.1">
 
     <engines>
         <engine name="cordova" version=">=2.4.0" />
@@ -24,6 +24,10 @@
     </author>
     <asset src="www/updater.html" target="updater.html" />
     <asset src="www/config.json" target="config.json" />
+
+    <platform name="android">
+        <framework src="updater.gradle" custom="true" type="gradleReference" />
+    </platform>
 
     <js-module src="www/updater.js" name="AppUpdater">
         <clobbers target="AppUpdater"/>
