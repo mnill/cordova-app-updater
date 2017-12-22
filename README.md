@@ -44,9 +44,6 @@ dependency :
   cordova plugin add https://github.com/mnill/cordova-app-updater.git
 ```
 
-**
-Replace $SERVER_URL with your server url in $project/platforms/$platform/platform_www/updater.html, where your config.json and files for update. (example http://mnillstone.com/) --- **Make sure to include the trailing slash in your url**
-
 ### Setup config.xml
 
 * Set started page to updater.html. ```<content src="updater.html"/>```
